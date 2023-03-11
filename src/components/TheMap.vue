@@ -62,7 +62,7 @@ function removeMarker(index) {
 }
 
 function addHome() {
-  L.marker([48.130665597122466, 11.697993278503500]).addTo(myMap.value);
+  L.marker([48.130665597122466, 11.697993278503500]).addTo(myMap);
 }
 </script>
 
