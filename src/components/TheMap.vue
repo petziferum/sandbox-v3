@@ -28,6 +28,9 @@
   {{ center }}
   <v-btn @click="addHome">click</v-btn>
     <v-btn @click="resetMarker">Reset</v-btn>
+    <div class="pa-4">
+      <v-switch v-model="editMode" label="Edit" color="green" />
+    </div>
   </div>
 </template>
 
@@ -53,13 +56,13 @@ const coordinates2 = ref([41.61322, -87.219483])
 const customAttributionPrefix = ref("<strong>Custom bottom left attribution</strong>")
 const markers = ref([])
 const popup = ref(L.popup({},myMap))
-
+const editMode = ref(false);
 
 
 function addMarker(e) {
   popup.value.setLatLng(e.latlng).setContent("klick");
   //.popup().setLatLng(e.latlng).setContent("Klick hier " + e.latlng).openOn(myMap.value);
-  if(e.latlng) {
+  if(e.latlng && editMode.value) {
     const m = L.marker(e.latlng)
     markers.value.push(m);
   }
