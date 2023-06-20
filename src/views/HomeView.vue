@@ -3,7 +3,7 @@
   <v-col cols="12" md="6">
     <v-toolbar-title class="text-center">Home</v-toolbar-title>
     <form ref="formular" @submit.prevent="save">
-      <v-text-field label="Name" v-model="product.name" />
+      <v-text-field label="Name" v-model="product.name" @keyup.enter="saveName" />
       <v-text-field label="Beschreibung" v-model="product.description" />
       <v-text-field label="Preis" type="number" v-model.number="product.price" />
       <v-btn type="submit">speichern</v-btn>
@@ -13,7 +13,7 @@
     {{ product }}
   </v-col>
   <v-col cols="3" v-for="p in allProducts" :key="p.id">
-    <v-card elevation="4" class="ma-8" >
+    <v-card elevation="4" class="ma-8">
       <v-card-text v-for="(value, key) in p" :key="key">{{ key }}: {{ value }}</v-card-text>
     </v-card>
   </v-col>
@@ -34,6 +34,9 @@ const product = reactive<Product>({
 
 const allProducts = ref()
 
+function saveName(): void {
+  alert("Save Name " + product.name);
+}
 function fetchAllProducts(): void {
   fetch("http://localhost:8000/products/all",{
     method: "GET",

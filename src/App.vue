@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <the-app-bar />
+    <the-navigation-drawer />
     <v-main>
       <router-view/>
     </v-main>
@@ -10,10 +11,11 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import TheAppBar from "@/components/TheAppBar.vue";
+import TheNavigationDrawer from "@/components/TheNavigationDrawer.vue";
 
 export default defineComponent({
   name: 'App',
-  components: {TheAppBar},
+  components: {TheNavigationDrawer, TheAppBar},
 
   data () {
     return {
