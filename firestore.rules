@@ -1,0 +1,30 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+  match /{document=**} {
+      allow read;
+      allow write;
+    }
+    match /depotstand/{doc} {
+    allow read;
+    allow write;
+    }
+    
+  match /recipes/{recipe} {
+  allow read;
+      allow write: if request.auth != null;
+  }
+  match /inventory/{inventory} {
+  allow read;
+  allow write: if request.auth != null;
+  }
+  match /users {
+  allow read;
+  allow write: if request.auth != null;
+  }
+  match /friends {
+  allow read;
+  allow write;
+  }
+}
+}
