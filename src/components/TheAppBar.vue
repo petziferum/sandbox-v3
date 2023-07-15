@@ -4,7 +4,7 @@
     <v-icon>mdi-menu</v-icon>
   </v-app-bar-nav-icon>
   <div>Sandbox</div>
-  <div>{{ drawerState }}</div>
+  <div>&nbsp; {{ drawerState }}</div>
 </v-app-bar>
 </template>
 
