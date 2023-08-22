@@ -23,7 +23,7 @@
 <script setup lang="ts">
 import {ref} from "vue";
 
-const apiKey = "a0dbe6c05d28edabb0b92037ebfaa82c";
+const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
 const lat = "48.13031387207511"
 const lon ="11.697514437186333"
 const weather = ref(null);
