@@ -4,6 +4,9 @@
     <h4>Crazy Experiments are going on in here....</h4>
     <v-row>
       <v-col>
+        <the-weather-history />
+      </v-col>
+      <v-col>
         <v-card>
           <v-card-title>
             <h3>Experiment 1</h3>
@@ -20,6 +23,7 @@
 import {onMounted, reactive, ref} from "vue";
 import {collection, getDocs} from "firebase/firestore";
 import {db} from "@/plugins/firebaseConfig.js";
+import TheWeatherHistory from "@/components/TheWeatherHistory.vue";
 const callNames = async function () {
   const querySnapshot = await getDocs(collection(db, "users"));
   querySnapshot.forEach((doc) => {
