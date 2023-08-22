@@ -4,8 +4,8 @@
   <v-card-item>
     <v-btn @click="fetchWeatherHistory">fetch</v-btn>
   </v-card-item>
-  <v-card-text v-if="weather">
-    <p>Wetter in Trudering am {{ returnDate(weather.dt)}}</p>
+  <v-card-text v-if="!loading">
+    <p>Wetter in {{ location[0].local_names.de }} am {{ returnDate(weather.dt)}}</p>
     <div>
     Wetter: {{ weather.weather[0]}}<br>
       Temperatur: <span class="text-amber font-weight-bold">{{ weather.main?.temp}}</span><br>
@@ -27,11 +27,22 @@ const apiKey = "a0dbe6c05d28edabb0b92037ebfaa82c";
 const lat = "48.13031387207511"
 const lon ="11.697514437186333"
 const weather = ref(null);
+const location = ref(null);
 const fetchURL = "https://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&units=metric&appid="+apiKey;
+const geoLocationUrl = "http://api.openweathermap.org/geo/1.0/reverse?lat="+lat+"&lon="+lon+"&limit=3&appid="+apiKey;
+const loading = ref(true);
+
 function fetchWeatherHistory(): void {
+  loading.value = true;
   fetch(fetchURL)
   .then(response => response.json())
   .then(data => weather.value = data)
+      .then(() => {
+        fetch(geoLocationUrl)
+            .then(response => response.json())
+            .then(data => location.value = data)
+      })
+      .then(() => loading.value = false)
 }
 
 function returnDate(unixTime: number) {
