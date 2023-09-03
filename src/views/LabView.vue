@@ -4,6 +4,12 @@
     <h4>Crazy Experiments are going on in here....</h4>
     <v-row>
       <v-col>
+        Rating
+        <The-Rating-Component />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
         <the-weather-history />
       </v-col>
       <v-col>
@@ -24,6 +30,8 @@ import {onMounted, reactive, ref} from "vue";
 import {collection, getDocs} from "firebase/firestore";
 import {db} from "@/plugins/firebaseConfig.js";
 import TheWeatherHistory from "@/components/TheWeatherHistory.vue";
+import TheRatingComponent from "@/components/theRatingComponent/theRatingComponent.vue";
+
 const callNames = async function () {
   const querySnapshot = await getDocs(collection(db, "users"));
   querySnapshot.forEach((doc) => {
