@@ -1,28 +1,52 @@
 <template>
-<v-card>
+<v-card
+    color="purple"
+width="450">
   <v-card-title>
     <h3>{{ name }}</h3>
   </v-card-title>
+
   <v-card-text>
-    <span>{{rating}}/{{ratingLenght}}</span>
-  </v-card-text>
-  <v-card-text>
-    <v-rating v-model="rating" :background-color="color" color="yellow" :hover="hover" :readonly="readonly" :large="large" :length=ratingLenght :item-labels="labels" />
+    <v-rating
+        v-model="rating"
+        :background-color="color"
+        :hover="hover"
+        :readonly="readonly"
+        :large="large"
+        color="white"
+        active-color="yellow-accent-4"
+        :length=ratingLenght
+        :item-labels="labels"
+        size="20"
+        density="compact"
+        half-increments
+    />
+    <span class="mx-4">{{rating}}/{{ratingLenght}}</span>
   </v-card-text>
 </v-card>
 </template>
 <script setup lang=ts>
-import {ref} from "vue";
+import {computed, ref} from "vue";
 
 const name = "The Rating Component"
-const rating = ref(5)
+const ratings = ref([6,5,9,6,7])
 const color = ref("red")
 const hover = ref(true)
-const readonly = ref(false)
-const large = ref(true)
+const readonly = ref(true)
+const large = ref(false)
 const ratingLenght = ref(10)
-const labels = ref(["Scheiße", "" , "Mies", "", "Geht so", "", "Gut", "", "Sehr gut", "Ausgezeichnet"])
+const labels = ref(["", "" , "", "", "", "", "", "", ""])
 
+const rating = computed({
+  get: () => {
+    const length = ratings.value.length
+    const sum = ratings.value.reduce((a, b) => a + b, 0);
+    return  (sum / length).toFixed(2)
+  },
+  set: (value) => {
+
+  }
+})
 </script>
 <style scoped>
 
