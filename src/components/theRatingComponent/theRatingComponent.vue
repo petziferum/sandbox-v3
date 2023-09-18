@@ -1,27 +1,26 @@
 <template>
-<v-card>
-  <v-card-title>
-    <h3>{{ name }}</h3>
-  </v-card-title>
-  <v-card-text>
+  <div>
+    <v-rating :modelValue="rating" readonly :background-color="color" color="yellow" :hover="hover" :readonly="readonly" :large="large" :length=ratingLenght :item-labels="labels" density="default" /><br>
     <span>{{rating}}/{{ratingLenght}}</span>
-  </v-card-text>
-  <v-card-text>
-    <v-rating v-model="rating" :background-color="color" color="yellow" :hover="hover" :readonly="readonly" :large="large" :length=ratingLenght :item-labels="labels" />
-  </v-card-text>
-</v-card>
+    </div>
 </template>
 <script setup lang=ts>
 import {ref} from "vue";
 
-const name = "The Rating Component"
-const rating = ref(5)
+const name = "Rating"
+
+defineProps({
+  rating: {
+    type: Number,
+    default: 5
+  }
+})
 const color = ref("red")
 const hover = ref(true)
 const readonly = ref(false)
-const large = ref(true)
+const large = ref(false)
 const ratingLenght = ref(10)
-const labels = ref(["Scheiße", "" , "Mies", "", "Geht so", "", "Gut", "", "Sehr gut", "Ausgezeichnet"])
+const labels = ref(["Scheiße", "" , "", "", "OK", "", "", "", "", "Ausgezeichnet"])
 
 </script>
 <style scoped>

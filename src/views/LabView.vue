@@ -5,7 +5,7 @@
     <v-row>
       <v-col>
         Rating
-        <The-Rating-Component />
+        <the-movie-review rating="1" movie-title="Ein scheiß Film"/>
       </v-col>
     </v-row>
     <v-row>
@@ -30,7 +30,7 @@ import {onMounted, reactive, ref} from "vue";
 import {collection, getDocs} from "firebase/firestore";
 import {db} from "@/plugins/firebaseConfig.js";
 import TheWeatherHistory from "@/components/TheWeatherHistory.vue";
-import TheRatingComponent from "@/components/theRatingComponent/theRatingComponent.vue";
+import TheMovieReview from "@/components/theRatingComponent/TheMovieReview.vue";
 
 const callNames = async function () {
   const querySnapshot = await getDocs(collection(db, "users"));

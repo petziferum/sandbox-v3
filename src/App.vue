@@ -2,7 +2,7 @@
   <v-app>
     <the-app-bar />
     <the-navigation-drawer />
-    <v-main>
+    <v-main class="mt-4">
       <router-view/>
     </v-main>
   </v-app>

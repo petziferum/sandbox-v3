@@ -8,6 +8,7 @@ elevation="3"
 rail>
   <v-list nav>
     <v-list-item prepend-icon="mdi-email" title="Inbox" value="inbox" to="/"></v-list-item>
+    <v-list-item prepend-icon="mdi-account" title="User" to="/user"></v-list-item>
     <v-list-item prepend-icon="mdi-account-supervisor-circle" title="Supervisors" value="supervisors" to="/map"></v-list-item>
     <v-list-item prepend-icon="mdi-clock-start" title="Clock-in" value="clockin" to="/lab"></v-list-item>
   </v-list>
