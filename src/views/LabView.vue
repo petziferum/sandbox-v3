@@ -15,7 +15,7 @@
             Grief Password Generator
           </v-card-title>
           <v-card-item>
-            <v-btn @click="generatePassword">Generate Password</v-btn>
+            <v-btn @click="passwordGenerator">Generate Password</v-btn>
           </v-card-item>
           <v-card-item>
             Dein Passwort: <strong>{{ password }}</strong>
@@ -95,6 +95,36 @@ const generatePassword = function (): void {
   const nightmarePassword = nightmarePasswordArray.join("");
   password.value = nightmarePassword;
 }
+
+function passwordGenerator() {
+  const words = ["Petzi", "Cuci", "Hironimo"];
+  const length = 12;
+  if (!Array.isArray(words) || words.length === 0) {
+    throw new Error('The input words must be a non-empty array.');
+  }
+
+  const passwordWords: string[] = [];
+  const randomIndexes: number[] = [];
+  const wordCount = words.length;
+
+  // Generate random indexes to pick words from the array
+  for (let i = 0; i < length; i++) {
+    const randomIndex: number = Math.floor(Math.random() * wordCount);
+    randomIndexes.push(randomIndex);
+  }
+
+  // Select words from the array based on random indexes
+  for (const index of randomIndexes) {
+    passwordWords.push(words[index]);
+  }
+
+  // Concatenate the selected words to create the password
+  const pass = passwordWords.join('');
+
+  password.value = pass;
+}
+
+
 
 </script>
 <style>
