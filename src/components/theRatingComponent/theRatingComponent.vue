@@ -1,4 +1,8 @@
 <template>
+  <div>
+    <v-rating :modelValue="rating" readonly :background-color="color" color="yellow" :hover="hover" :readonly="readonly" :large="large" :length=ratingLenght :item-labels="labels" density="default" /><br>
+    <span>{{rating}}/{{ratingLenght}}</span>
+    </div>
 <v-card
     color="purple"
 width="450">
@@ -30,12 +34,19 @@ import {computed, ref} from "vue";
 
 const name = "The Rating Component"
 const ratings = ref([6,5,9,6,7])
+
+defineProps({
+  rating: {
+    type: Number,
+    default: 5
+  }
+})
 const color = ref("red")
 const hover = ref(true)
 const readonly = ref(true)
 const large = ref(false)
 const ratingLenght = ref(10)
-const labels = ref(["", "" , "", "", "", "", "", "", ""])
+const labels = ref(["Scheiße", "" , "", "", "OK", "", "", "", "", "Ausgezeichnet"])
 
 const rating = computed({
   get: () => {

@@ -3,11 +3,10 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getFunctions } from "firebase/functions";
 import { getFirestore } from "firebase/firestore";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+// Projekt documentation-dfdb2
 const firebaseConfig = {
     apiKey: "AIzaSyAQrUZ44HnkaVksAqUs4G79TiaG1Ejwiw0",
     authDomain: "documentation-dfdb2.firebaseapp.com",
@@ -24,5 +23,31 @@ const app = initializeApp(firebaseConfig);
 const functions = getFunctions(app);
 const analytics = getAnalytics(app);
 const db = getFirestore(app);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+const signIn = () =>{
+    signInWithPopup(auth, provider)
+        .then((result) => {
+            console.log("result", result);
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+            // The signed-in user info.
+            const user = result.user;
+            // IdP data available using getAdditionalUserInfo(result)
+            // ...
+        }).catch((error) => {
+        console.log("error", error)
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+    });
+}
 
-export { functions, db };
+
+export { functions, db , auth, provider, signIn};
