@@ -3,7 +3,7 @@
   <v-col cols="12" md="6">
     <v-toolbar-title class="text-center">Home</v-toolbar-title>
     <form ref="formular" @submit.prevent="save">
-      <v-text-field label="Name" v-model="product.name" @keyup.enter="saveName" />
+      <v-text-field label="Name des Produkts" v-model="product.name" @keyup.enter="saveName" />
       <v-text-field label="Beschreibung" v-model="product.description" />
       <v-text-field label="Preis" type="number" v-model.number="product.price" />
       <v-btn type="submit">speichern</v-btn>
