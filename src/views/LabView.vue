@@ -45,6 +45,11 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-row>
+      <v-col>
+        <the-product-form />
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 <script lang="ts" setup>
@@ -53,6 +58,7 @@ import {collection, getDocs} from "firebase/firestore";
 import {db} from "@/plugins/firebaseConfig.js";
 import TheWeatherHistory from "@/components/TheWeatherHistory.vue";
 import TheMovieReview from "@/components/theRatingComponent/TheMovieReview.vue";
+import TheProductForm from "@/components/TheProductForm.vue";
 
 const password = ref("");
 const oldPassword = ref([]);
