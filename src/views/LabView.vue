@@ -4,6 +4,12 @@
     <h4>Crazy Experiments are going on in here....</h4>
     <v-row>
       <v-col>
+        Dialog
+        <base-dialog />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
         <v-card style="background-color: #2c3e50;" theme="dark">
           <v-card-title>
             Grief Password Generator
@@ -59,6 +65,7 @@ import {db} from "@/plugins/firebaseConfig.js";
 import TheWeatherHistory from "@/components/TheWeatherHistory.vue";
 import TheMovieReview from "@/components/theRatingComponent/TheMovieReview.vue";
 import TheProductForm from "@/components/TheProductForm.vue";
+import BaseDialog from "@/components/BaseDialog.vue";
 
 const password = ref("");
 const oldPassword = ref([]);
