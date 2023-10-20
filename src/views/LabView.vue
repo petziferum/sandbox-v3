@@ -4,6 +4,11 @@
     <h4>Crazy Experiments are going on in here....</h4>
     <v-row>
       <v-col>
+        <product-view />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
         Dialog
         <base-dialog />
       </v-col>
@@ -66,6 +71,7 @@ import TheWeatherHistory from "@/components/TheWeatherHistory.vue";
 import TheMovieReview from "@/components/theRatingComponent/TheMovieReview.vue";
 import TheProductForm from "@/components/TheProductForm.vue";
 import BaseDialog from "@/components/BaseDialog.vue";
+import ProductView from "@/components/products/ProductView.vue";
 
 const password = ref("");
 const oldPassword = ref([]);
