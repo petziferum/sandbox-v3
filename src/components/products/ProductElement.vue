@@ -1,15 +1,18 @@
 <template>
   <div style="background-color: floralwhite; border:1px solid">
+    <v-list>
     <v-list-item dense>
-      <v-list-item-content>
+      <div>
         <v-list-item-title>{{ product.productName }}</v-list-item-title>
         <v-list-item-subtitle>
         <v-chip v-for="(value, key) in product.statusChanges" :key="key">
-          <div>{{ value.status }}</div>
+          <div>{{ key}}: {{ value }}</div>
+
         </v-chip>
         </v-list-item-subtitle>
-      </v-list-item-content>
+      </div>
     </v-list-item>
+    </v-list>
   </div>
 </template>
 
