@@ -27,26 +27,29 @@
   </v-row>
 </template>
 
-<script>
+<script setup>
 import ProductStatus, {statusToBeschreibung} from "./types/ProductStatus";
-export default {
-  name: "ProductFilterSelect",
-  props: ["selected", "statusCount"],
-  data: () => ({
-    productStatus: [
+import {ref} from "vue";
+
+
+  const props = defineProps(["selected", "statusCount"])
+
+    const productStatus = ref([
         ProductStatus.AVAILABLE,
     ProductStatus.ORDER,
     ProductStatus.INSTOCK,
-    ProductStatus.UNAVAILABLE]
-  }),
-  methods: {
-    isSelected(productStatus) {
-      return this.selected.indexOf(productStatus) !== -1;
-    },
-    toBeschreibung(status){
+    ProductStatus.UNAVAILABLE]);
+
+
+    function isSelected(productStatus) {
+      return props.selected.indexOf(productStatus) !== -1;
+    }
+
+    function toBeschreibung(status){
       return statusToBeschreibung.get(status)
-    },
-    toIcon(status) {
+    }
+
+    function toIcon(status) {
       if(status === 'AVAILABLE'){
         return "mdi-storefront"
       } else if(status === 'ORDER'){
@@ -54,31 +57,32 @@ export default {
       }else if(status === 'INSTOCK'){
         return 'mdi-book'
       } else return 'mdi-delete-restore'
-    },
-    showBadge(status) { //status = ProductStatus
+    }
+
+    function showBadge(status) { //status = ProductStatus
       //return [ProductStatus.AVAILABLE, ProductStatus.INSTOCK].includes(status)
-      return !this.selected.includes(status) && this.getBadgeCount(status) != "0"
-    },
-    getBadgeCount(s) {
-      if(this.statusCount) {
-        const statusCountResult = this.statusCount.get(s);
+      return !props.selected.includes(status) && getBadgeCount(status) != "0"
+    }
+
+    function getBadgeCount(s) {
+      if(props.statusCount) {
+        const statusCountResult = props.statusCount.get(s);
         if(statusCountResult === undefined) {
           return '0'
         } else {
           return statusCountResult;
         }
       }
-    },
-    toggle(productStatus) {
-      const index = this.selected.indexOf(productStatus);
+    }
+
+    function toggle(productStatus) {
+      const index = props.selected.indexOf(productStatus);
       if(index !== -1) {
 
-        this.selected.splice(index, 1);
+        props.selected.splice(index, 1);
       } else {
-        this.selected.push(productStatus);      }
-    }
+        props.selected.push(productStatus);      }
   }
-};
 </script>
 
 <style scoped>

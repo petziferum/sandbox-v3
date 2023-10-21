@@ -1,46 +1,49 @@
 <template>
   <div>
-    {{productList}}
     <div>
-     <!--  <product-filter-select
+     <product-filter-select
         class="px-3 pb-2"
         :selected="selectedStatus"
         :status-count="statusCount"
       />
-      -->
     </div>
-    <template>
-      <!-- <product-element v-for="p in filteredProductList" :key="p.productNumber" :product="p" /> Todo: Refactor der Komponente nötig -->
-    </template>
+    {{ filteredProductList }}
+    <v-card class="my-4">
+      <template>
+        <product-element v-for="p in filteredProductList" :key="p.productNumber" :product="p" />
+      </template>
+    </v-card>
+
     <div>
       <v-btn @click="getKeys">get ORDER Amount</v-btn> {{oKeys}},
     </div>
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import StatusChanges from "./types/StatusChanges";
 import productStatus from "./types/ProductStatus";
-//import ProductFilterSelect from "./ProductFilterSelect";
 import Product from "./types/Product";
 
+import ProductElement from "@/components/products/ProductElement.vue";
+import ProductFilterSelect from "@/components/products/ProductFilterSelect.vue";
 import {computed, onMounted, ref} from "vue";
 
 
 
-      const productList = ref([])
+      const productList = ref([]);
       const openPanels = ref([0])
       const a = ref([])
       const mapstatus = ref(1)
-      const oKeys = ref(0)
+      const oKeys: number = ref(0)
       const selectedStatus = ref([productStatus.AVAILABLE, productStatus.INSTOCK])
 
 
     function getStatus() {
       for (let p in productStatus) {
-        this.a.push(p);
+        a.value.push(p);
       }
-      console.info("pushed a", this.a)
+      console.info("pushed a", a.value);
     }
 
     function generateProducts() {
@@ -76,16 +79,16 @@ import {computed, onMounted, ref} from "vue";
       p4.productNumber = "p4"
       p4.withStatus(unavailable)
 
-      this.productList.push(p1)
-      this.productList.push(p2)
-      this.productList.push(p3)
-      this.productList.push(p4)
+      productList.value.push(p1)
+      productList.value.push(p2)
+      productList.value.push(p3)
+      productList.value.push(p4)
     }
     function getKeys(){ //Funktion um die Anzahl an Produkten zu zählen die den jeweiligen Status haben mithilfe einer Map. Macht auch statusCount()
-      //this.oKeys = Object.keys(productStatus);
-      console.log("länge", this.productList)
-      const m = new Map(Object.keys(productStatus).map(value => [productStatus[value], this.productList.filter(value1 => value1.statusChanges[0].status === productStatus[value]).length]));
-      this.oKeys = m.get("ORDER")
+      //oKeys = Object.keys(productStatus);
+      console.log("länge", productList.value)
+      const m = new Map(Object.keys(productStatus).map((value: Product) => [productStatus[value], productList.value.filter((value1:Product) => value1.statusChanges[0].status === productStatus[value]).length]));
+      oKeys.value = m.get("ORDER")
     }
 
 
@@ -93,19 +96,19 @@ import {computed, onMounted, ref} from "vue";
       const map = new Map(
         Object.keys(productStatus).map(value => {
           const pValue = productStatus[value];
-          return [pValue, this.productList.filter(value1 => value1.statusChanges[0].status === pValue).length];
+          return [pValue, productList.value.filter((value1: Product) => value1.statusChanges[0].status === pValue).length];
         })
       );
       return map;
     });
     const filteredProductList = computed(() => {
-      return this.productList.filter(value => {
-        return this.selectedStatus.includes(value.statusChanges[0].status);
+      return productList.value.filter((value: Product) => {
+        return selectedStatus.value.includes(value.statusChanges[0].status);
       });
     });
   onMounted(() => {
-    this.generateProducts();
-    this.getStatus();
+    generateProducts();
+   getStatus();
   });
 
 </script>

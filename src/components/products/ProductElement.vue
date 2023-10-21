@@ -13,11 +13,10 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "ProductElement",
-  props: ["product"]
-};
+<script setup>
+
+  const props = defineProps(["product"]);
+
 </script>
 
 <style scoped></style>
