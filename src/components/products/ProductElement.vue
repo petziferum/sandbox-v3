@@ -21,5 +21,4 @@
   const props = defineProps(["product"]);
 
 </script>
-
 <style scoped></style>
