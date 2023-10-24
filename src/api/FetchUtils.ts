@@ -1,3 +1,14 @@
+class ApiError extends Error {
+  public readonly status: number;
+
+  constructor(message: string, status: number) {
+    super(message);
+    this.status = status;
+    this.stack = new Error().stack;
+    this.message = message;
+  }
+}
+
 export default class FetchUtils {
   static getGETConfig(signal?: AbortSignal): RequestInit {
     return {
@@ -60,5 +71,16 @@ export default class FetchUtils {
   private static _getXSRFToken() {
     const help = document.cookie.match(new RegExp("(^|;)\\s*" + "XSRF-TOKEN" + "\\s*=\\s*([^;]+)"));
     return (help ? help.pop() : "") as string;
+  }
+
+  static async defaultResponseHandler(response: Response, errorMessage?: string): Promise<void> {
+    if (!response.ok) {
+        if (response.type === 'opaqueredirect') {
+            location.reload();
+        }
+        return await response.json().then((error) => {
+            throw new ApiError(error.message, response.status);
+        });
+    }
   }
 }
