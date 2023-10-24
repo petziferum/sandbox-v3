@@ -8,6 +8,43 @@ export default class FetchUtils {
     };
   }
 
+  static getPOSTConfig(body: any, signal?: AbortSignal): RequestInit {
+    return {
+      body: JSON.stringify(body),
+      headers: this.getHeaders(),
+      method: "POST",
+      mode: "cors",
+      redirect: "manual",
+      credentials: "same-origin",
+      signal: signal,
+    };
+  }
+
+  static getPUTConfig(body: any, signal?: AbortSignal): RequestInit {
+    const headers = this.getHeaders();
+    if(body.version) {
+      headers.append("If-Match", body.version);
+    }
+    return {
+        body: JSON.stringify(body),
+        headers: headers,
+        method: "PUT",
+        mode: "cors",
+        redirect: "manual",
+        credentials: "same-origin",
+        signal: signal,
+    }
+  }
+
+  static getDELETEConfig(): RequestInit {
+    return {
+        headers: this.getHeaders(),
+        method: "DELETE",
+        mode: "cors",
+        redirect: "manual",
+        credentials: "same-origin",
+    }
+  }
 
   private static getHeaders() {
     const headers = new Headers({
