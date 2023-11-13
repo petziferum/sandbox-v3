@@ -5,7 +5,12 @@
   </v-toolbar>
   <v-row>
     <v-col>
-      <v-data-table :items="sortedItems" :headers="headers">
+      <v-card>
+        <v-card-text>
+          Diese Tabelle Zeigt Produkte, die nach ihrer 'ID' sortiert sind, jedoch werden zusammengehörige Produkte untereinander angezeigt.
+        </v-card-text>
+        <v-card-text>
+      <v-data-table density="compact" :items="sortedItems" :headers="headers">
         <template #item.produktart="{ item }">
           <span v-if="item.produktart === 'Hauptprodukt'"><strong>{{ item.produktart }}</strong></span>
           <span v-else>{{ item.produktart }}</span>
@@ -14,6 +19,8 @@
           <span v-if="item.parentProduct"><strong>{{ item.parentProduct }}</strong></span>
         </template>
       </v-data-table>
+        </v-card-text>
+      </v-card>
     </v-col>
   </v-row>
   <v-row>
