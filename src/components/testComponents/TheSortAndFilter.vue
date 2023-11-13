@@ -5,7 +5,6 @@
   </v-toolbar>
   <v-row>
     <v-col>
-      Tabelle:
       <v-data-table :items="sortedItems" :headers="headers">
         <template #item.produktart="{ item }">
           <span v-if="item.produktart === 'Hauptprodukt'"><strong>{{ item.produktart }}</strong></span>
