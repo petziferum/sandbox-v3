@@ -13,6 +13,7 @@ const generateBoxes = () => {
     for (let col = 0; col < 53; col++) {
       const box = document.createElement('div');
       box.classList.add('box');
+      box.id = `box-${row}-${col}`;
       box.addEventListener('click', readBox)
       boxContainer.value.appendChild(box);
     }
@@ -35,12 +36,13 @@ onMounted(generateBoxes);
   width: 12px;
   height: 12px;
   background-color: #ccc;
-  border: 1px solid #000;
+  border: 0px solid rgba(0, 100, 0, 0.2);
   border-radius: 2px;
 }
 .box:hover {
   z-index: 100;
-  background-color: #5dff49;
-  box-shadow: 0 0 10px 10px #66ff00, 0 0 10px #31ff16;
+  background-color: #6dfff9;
+  border: 1px solid rgba(0, 0, 150, 0.2);
+  box-shadow: 0 0 20px 9px #00ffe1;
 }
 </style>
