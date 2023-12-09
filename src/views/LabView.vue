@@ -4,6 +4,11 @@
     <h4>Crazy Experiments are going on in here....</h4>
     <v-row>
       <v-col>
+        <the-excel-upload-component />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
         <local-gallery />
       </v-col>
     </v-row>
@@ -90,6 +95,7 @@ import ProductView from "@/components/products/ProductView.vue";
 import TheGrid from "@/components/testComponents/theGrid.vue";
 import TheSortAndFilter from "@/components/testComponents/TheSortAndFilter.vue";
 import LocalGallery from "@/components/testComponents/localGallery.vue";
+import TheExcelUploadComponent from "@/components/TheExcelUploadComponent.vue";
 
 const password = ref("");
 const oldPassword = ref([]);
