@@ -7,6 +7,7 @@
         :status-count="statusCount"
       />
     </div>
+    StatusCount: {{ statusCount }}
     <v-card class="my-4">
         <product-element v-for="p in filteredProductList" :key="p.productNumber" :product="p" />
     </v-card>

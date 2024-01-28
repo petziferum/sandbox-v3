@@ -2,6 +2,30 @@
   <v-container fluid>
     <h1>Welcome to the Lab</h1>
     <h4>Crazy Experiments are going on in here....</h4>
+    <v-row id="Nas_Server_Gradle_Backend">
+      <v-col>
+        <v-card>
+          <v-card-title>
+            <h3>Experiment local Server Backend</h3>
+          </v-card-title>
+          <v-card-text>
+            <v-row>
+              <v-col class="text-grey">
+                Das angesprochene Backend liegt auf dem Nas Server in einem Docker Container. Dort läuft es auf Port 8080. Das Image ist auf DockerHub und heist "gradlebackend".
+              </v-col>
+            </v-row>
+          <v-row>
+            <v-col cols="6">
+              <v-btn @click="getHelloFromGradleBackend">Hello</v-btn>
+            </v-col>
+            <v-col cols="6">
+              Antwort: "{{ serverResponse }}"
+            </v-col>
+          </v-row>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
     <v-row>
       <v-col>
         <the-excel-upload-component />
@@ -84,7 +108,7 @@
   </v-container>
 </template>
 <script lang="ts" setup>
-import {onMounted, reactive, ref} from "vue";
+import {computed, onBeforeMount, onMounted, reactive, ref} from "vue";
 import {collection, getDocs} from "firebase/firestore";
 import {db} from "@/plugins/firebaseConfig.js";
 import TheWeatherHistory from "@/components/TheWeatherHistory.vue";
@@ -99,6 +123,7 @@ import TheExcelUploadComponent from "@/components/TheExcelUploadComponent.vue";
 
 const password = ref("");
 const oldPassword = ref([]);
+const serverResponse = ref("");
 
 const callNames = async function () {
   const querySnapshot = await getDocs(collection(db, "users"));
@@ -124,6 +149,16 @@ const generatePassword = function (): void {
   }
   const nightmarePassword = nightmarePasswordArray.join("");
   password.value = nightmarePassword;
+}
+
+function getHelloFromGradleBackend() {
+  const ip = "192.168.178.123";
+  fetch('http://localhost:8080/hello')
+    .then(response => response.text())
+    .then(data => {
+      console.log(data);
+      serverResponse.value = data;
+    });
 }
 
 function passwordGenerator() {
