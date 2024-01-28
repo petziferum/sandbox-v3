@@ -6,6 +6,11 @@ This template should help get you started developing with Vue 3 in Vite.
 
 Intellij with Vuejs and Javascript plugins installed.
 
+## ToDo's
+
+- The Lab ausbauen
+- Lab Expandable Komponente
+
 ## Type Support for `.vue` Imports in TS
 
 TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
