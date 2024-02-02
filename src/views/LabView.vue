@@ -25,40 +25,26 @@
         </v-card-text>
       </v-card>
     </wrapper-panel>
-    </v-expansion-panels>
-    <v-row>
-      <v-col>
+    <wrapper-panel title="Excel upload">
         <the-excel-upload-component />
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
+      </wrapper-panel>
+    <wrapper-panel title="local Gallery">
         <local-gallery />
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
+      </wrapper-panel>
+    <wrapper-panel title="Sort and Filter">
         <the-sort-and-filter />
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
+      </wrapper-panel>
+    <wrapper-panel title="The Grid">
         <the-grid />
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
+      </wrapper-panel>
+    <wrapper-panel title="Product View">
         <product-view />
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
+      </wrapper-panel>
+    <wrapper-panel title="Bas Dialog">
         Dialog
         <base-dialog />
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
+      </wrapper-panel>
+    <wrapper-panel title="Grief Password Generator">
         <v-card style="background-color: #2c3e50;" theme="dark">
           <v-card-title>
             Grief Password Generator
@@ -76,20 +62,15 @@
           </ul>
           </v-card-text>
         </v-card>
-
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
+      </wrapper-panel>
+    <wrapper-panel title="">
         Rating
         <the-movie-review rating="1" movie-title="Ein scheiß Film"/>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
+      </wrapper-panel>
+    <wrapper-panel title="">
         <the-weather-history />
-      </v-col>
-      <v-col>
+      </wrapper-panel>
+      <wrapper-panel title="">
         <v-card>
           <v-card-title>
             <h3>Experiment 1</h3>
@@ -98,13 +79,11 @@
             <v-btn @click="callNames">get Names</v-btn>
           </v-card-text>
         </v-card>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
+      </wrapper-panel>
+    <wrapper-panel title="">
         <the-product-form />
-      </v-col>
-    </v-row>
+      </wrapper-panel>
+    </v-expansion-panels>
   </v-container>
 </template>
 <script lang="ts" setup>
@@ -122,8 +101,8 @@ import LocalGallery from "@/components/testComponents/localGallery.vue";
 import TheExcelUploadComponent from "@/components/TheExcelUploadComponent.vue";
 import WrapperPanel from "@/components/testComponents/WrapperPanel.vue";
 
-const password = ref("");
-const oldPassword = ref([]);
+const password = ref<string>("");
+const oldPassword = ref<string[]>([]);
 const serverResponse = ref("");
 
 const callNames = async function () {

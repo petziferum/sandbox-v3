@@ -7,6 +7,11 @@
   </v-expansion-panel>
 </template>
 <script setup lang="ts">
-defineProps(["title"]);
+defineProps({
+    title: {
+      type: String,
+      default: "Test Panel"
+    }
+});
 </script>
 <style scoped></style>
