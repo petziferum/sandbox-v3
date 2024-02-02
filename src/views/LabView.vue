@@ -2,18 +2,18 @@
   <v-container fluid>
     <h1>Welcome to the Lab</h1>
     <h4>Crazy Experiments are going on in here....</h4>
-    <v-row id="Nas_Server_Gradle_Backend">
-      <v-col>
-        <v-card>
-          <v-card-title>
-            <h3>Experiment local Server Backend</h3>
-          </v-card-title>
-          <v-card-text>
-            <v-row>
-              <v-col class="text-grey">
-                Das angesprochene Backend liegt auf dem Nas Server in einem Docker Container. Dort läuft es auf Port 8080. Das Image ist auf DockerHub und heist "gradlebackend".
-              </v-col>
-            </v-row>
+    <v-expansion-panels>
+    <wrapper-panel title="NAS Server Gradle Backend Test">
+      <v-card>
+        <v-card-title>
+          <h3>Experiment local Server Backend</h3>
+        </v-card-title>
+        <v-card-text>
+          <v-row>
+            <v-col class="text-grey">
+              Das angesprochene Backend liegt auf dem Nas Server in einem Docker Container. Dort läuft es auf Port 8080. Das Image ist auf DockerHub und heist "gradlebackend".
+            </v-col>
+          </v-row>
           <v-row>
             <v-col cols="6">
               <v-btn @click="getHelloFromGradleBackend">Hello</v-btn>
@@ -22,10 +22,10 @@
               Antwort: "{{ serverResponse }}"
             </v-col>
           </v-row>
-          </v-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
+        </v-card-text>
+      </v-card>
+    </wrapper-panel>
+    </v-expansion-panels>
     <v-row>
       <v-col>
         <the-excel-upload-component />
@@ -120,6 +120,7 @@ import TheGrid from "@/components/testComponents/theGrid.vue";
 import TheSortAndFilter from "@/components/testComponents/TheSortAndFilter.vue";
 import LocalGallery from "@/components/testComponents/localGallery.vue";
 import TheExcelUploadComponent from "@/components/TheExcelUploadComponent.vue";
+import WrapperPanel from "@/components/testComponents/WrapperPanel.vue";
 
 const password = ref("");
 const oldPassword = ref([]);
@@ -152,8 +153,8 @@ const generatePassword = function (): void {
 }
 
 function getHelloFromGradleBackend() {
-  const ip = "192.168.178.123";
-  fetch('http://localhost:8080/hello')
+  const ip = "http://192.168.178.60:8080";
+  fetch(ip + '/hello')
     .then(response => response.text())
     .then(data => {
       console.log(data);
