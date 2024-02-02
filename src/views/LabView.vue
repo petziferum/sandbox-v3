@@ -153,12 +153,14 @@ const generatePassword = function (): void {
 }
 
 function getHelloFromGradleBackend() {
+  serverResponse.value = "";
   const ip = "http://192.168.178.60:8080";
   fetch(ip + '/hello')
     .then(response => response.text())
     .then(data => {
       console.log(data);
       serverResponse.value = data;
+
     });
 }
 
