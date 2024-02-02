@@ -63,24 +63,25 @@
           </v-card-text>
         </v-card>
       </wrapper-panel>
-    <wrapper-panel title="">
+    <wrapper-panel title="Ratin Component">
         Rating
         <the-movie-review rating="1" movie-title="Ein scheiß Film"/>
       </wrapper-panel>
-    <wrapper-panel title="">
+    <wrapper-panel title="The Weather API">
         <the-weather-history />
       </wrapper-panel>
-      <wrapper-panel title="">
+      <wrapper-panel title="Experiment 1">
         <v-card>
           <v-card-title>
             <h3>Experiment 1</h3>
           </v-card-title>
           <v-card-text>
+            <div class="ma-2">Fetch auf Firebase dokumentation Tabelle "users"</div>
             <v-btn @click="callNames">get Names</v-btn>
           </v-card-text>
         </v-card>
       </wrapper-panel>
-    <wrapper-panel title="">
+    <wrapper-panel title="Product Form">
         <the-product-form />
       </wrapper-panel>
     </v-expansion-panels>
