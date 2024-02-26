@@ -3,6 +3,28 @@
     <h1>Welcome to the Lab</h1>
     <h4>Crazy Experiments are going on in here....</h4>
     <v-expansion-panels>
+      <wrapper-panel title="Abfahrsauskunft U2">
+        <v-card>
+          <v-card-title>
+            <h3>Abfahrsauskunft U2</h3>
+          </v-card-title>
+          <v-card-text>
+            <v-row>
+              <v-col class="text-grey">
+                Hier wird die Abfahrsauskunft der U2 angezeigt.
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="6">
+                <v-btn @click="fetchTrain">Hello</v-btn>
+              </v-col>
+              <v-col cols="6">
+                U2: "Noch nicht implementiert"
+              </v-col>
+            </v-row>
+          </v-card-text>
+        </v-card>
+      </wrapper-panel>
     <wrapper-panel title="NAS Server Gradle Backend Test">
       <v-card>
         <v-card-title>
@@ -81,7 +103,7 @@
           </v-card-text>
         </v-card>
       </wrapper-panel>
-    <wrapper-panel title="Product Form">
+    <wrapper-panel title="Product Forms">
         <the-product-form />
       </wrapper-panel>
     </v-expansion-panels>
@@ -101,11 +123,15 @@ import TheSortAndFilter from "@/components/testComponents/TheSortAndFilter.vue";
 import LocalGallery from "@/components/testComponents/localGallery.vue";
 import TheExcelUploadComponent from "@/components/TheExcelUploadComponent.vue";
 import WrapperPanel from "@/components/testComponents/WrapperPanel.vue";
+import MvgApi from "@/components/testComponents/MvgApi";
 
 const password = ref<string>("");
 const oldPassword = ref<string[]>([]);
 const serverResponse = ref("");
 
+function fetchTrain() {
+  MvgApi.fetchNextTrainCors("U2");
+}
 const callNames = async function () {
   const querySnapshot = await getDocs(collection(db, "users"));
   querySnapshot.forEach((doc) => {
