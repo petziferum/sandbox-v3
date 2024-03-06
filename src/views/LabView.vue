@@ -2,85 +2,92 @@
   <v-container fluid>
     <h1>Welcome to the Lab</h1>
     <h4>Crazy Experiments are going on in here....</h4>
-    <v-row>
-      <v-col>
-        <the-excel-upload-component />
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
-        <local-gallery />
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
-        <the-sort-and-filter />
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
-        <the-grid />
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
-        <product-view />
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
-        Dialog
-        <base-dialog />
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
-        <v-card style="background-color: #2c3e50;" theme="dark">
-          <v-card-title>
-            Grief Password Generator
-          </v-card-title>
-          <v-card-item>
-            <v-btn @click="passwordGenerator">Generate Password</v-btn>
-          </v-card-item>
-          <v-card-item>
-            Dein Passwort: <strong>{{ password }}</strong>
-          </v-card-item>
-          <v-card-text class="ml-4">
-          <div class="ma-3">Alte Passwörter:</div>
-          <ul>
-            <li v-for="old in oldPassword">{{ old }}</li>
-          </ul>
-          </v-card-text>
-        </v-card>
+    <v-expansion-panels>
+      <v-expansion-panel title="Test Components">
+        <template #text>
+        <v-row>
+          <v-col>
+            <the-excel-upload-component />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <local-gallery />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <the-sort-and-filter />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <the-grid />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <product-view />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            Dialog
+            <base-dialog />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <v-card style="background-color: #2c3e50;" theme="dark">
+              <v-card-title>
+                Grief Password Generator
+              </v-card-title>
+              <v-card-item>
+                <v-btn @click="passwordGenerator">Generate Password</v-btn>
+              </v-card-item>
+              <v-card-item>
+                Dein Passwort: <strong>{{ password }}</strong>
+              </v-card-item>
+              <v-card-text class="ml-4">
+                <div class="ma-3">Alte Passwörter:</div>
+                <ul>
+                  <li v-for="old in oldPassword">{{ old }}</li>
+                </ul>
+              </v-card-text>
+            </v-card>
 
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
-        Rating
-        <the-movie-review rating="1" movie-title="Ein scheiß Film"/>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
-        <the-weather-history />
-      </v-col>
-      <v-col>
-        <v-card>
-          <v-card-title>
-            <h3>Experiment 1</h3>
-          </v-card-title>
-          <v-card-text>
-            <v-btn @click="callNames">get Names</v-btn>
-          </v-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
-        <the-product-form />
-      </v-col>
-    </v-row>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            Rating
+            <the-movie-review rating="1" movie-title="Ein scheiß Film"/>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <the-weather-history />
+          </v-col>
+          <v-col>
+            <v-card>
+              <v-card-title>
+                <h3>Experiment 1</h3>
+              </v-card-title>
+              <v-card-text>
+                <v-btn @click="callNames">get Names</v-btn>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <the-product-form />
+          </v-col>
+        </v-row>
+        </template>
+      </v-expansion-panel>
+    </v-expansion-panels>
+
   </v-container>
 </template>
 <script lang="ts" setup>
