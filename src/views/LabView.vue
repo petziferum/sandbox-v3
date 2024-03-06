@@ -3,91 +3,110 @@
     <h1>Welcome to the Lab</h1>
     <h4>Crazy Experiments are going on in here....</h4>
     <v-expansion-panels>
-      <v-expansion-panel title="Test Components">
-        <template #text>
-        <v-row>
-          <v-col>
-            <the-excel-upload-component />
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col>
-            <local-gallery />
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col>
-            <the-sort-and-filter />
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col>
-            <the-grid />
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col>
-            <product-view />
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col>
-            Dialog
-            <base-dialog />
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col>
-            <v-card style="background-color: #2c3e50;" theme="dark">
-              <v-card-title>
-                Grief Password Generator
-              </v-card-title>
-              <v-card-item>
-                <v-btn @click="passwordGenerator">Generate Password</v-btn>
-              </v-card-item>
-              <v-card-item>
-                Dein Passwort: <strong>{{ password }}</strong>
-              </v-card-item>
-              <v-card-text class="ml-4">
-                <div class="ma-3">Alte Passwörter:</div>
-                <ul>
-                  <li v-for="old in oldPassword">{{ old }}</li>
-                </ul>
-              </v-card-text>
-            </v-card>
-
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col>
-            Rating
-            <the-movie-review rating="1" movie-title="Ein scheiß Film"/>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col>
-            <the-weather-history />
-          </v-col>
-          <v-col>
-            <v-card>
-              <v-card-title>
-                <h3>Experiment 1</h3>
-              </v-card-title>
-              <v-card-text>
-                <v-btn @click="callNames">get Names</v-btn>
-              </v-card-text>
-            </v-card>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col>
-            <the-product-form />
-          </v-col>
-        </v-row>
-        </template>
-      </v-expansion-panel>
+      <wrapper-panel title="Abfahrsauskunft U2">
+        <v-card>
+          <v-card-title>
+            <h3>Abfahrsauskunft U2</h3>
+          </v-card-title>
+          <v-card-text>
+            <v-row>
+              <v-col class="text-grey">
+                Hier wird die Abfahrsauskunft der U2 angezeigt.
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="6">
+                <v-btn @click="fetchTrain">Hello</v-btn>
+              </v-col>
+              <v-col cols="6">
+                U2: "Noch nicht implementiert"
+              </v-col>
+            </v-row>
+          </v-card-text>
+        </v-card>
+      </wrapper-panel>
+    <wrapper-panel title="NAS Server Gradle Backend Test">
+      <v-card>
+        <v-card-title>
+          <h3>Experiment local Server Backend</h3>
+        </v-card-title>
+        <v-card-text>
+          <v-row>
+            <v-col class="text-grey">
+              Das angesprochene Backend liegt auf dem Nas Server in einem Docker Container. Dort läuft es auf Port 8080. Das Image ist auf DockerHub und heist "gradlebackend".
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="6">
+              <v-btn @click="getHelloFromGradleBackend">Hello</v-btn>
+            </v-col>
+            <v-col cols="6">
+              Antwort: "{{ serverResponse }}"
+            </v-col>
+          </v-row>
+        </v-card-text>
+      </v-card>
+    </wrapper-panel>
+    <wrapper-panel title="Excel upload">
+        <the-excel-upload-component />
+      </wrapper-panel>
+    <wrapper-panel title="local Gallery">
+        <local-gallery />
+      </wrapper-panel>
+    <wrapper-panel title="Sort and Filter">
+        <the-sort-and-filter />
+      </wrapper-panel>
+    <wrapper-panel title="The Grid">
+        <the-grid />
+      </wrapper-panel>
+    <wrapper-panel title="Product View">
+        <product-view />
+      </wrapper-panel>
+    <wrapper-panel title="Bas Dialog">
+        Dialog
+        <base-dialog />
+      </wrapper-panel>
+    <wrapper-panel title="Grief Password Generator">
+        <v-card style="background-color: #2c3e50;" theme="dark">
+          <v-card-title>
+            Grief Password Generator
+          </v-card-title>
+          <v-card-item>
+            <v-btn @click="passwordGenerator">Generate Password</v-btn>
+          </v-card-item>
+          <v-card-item>
+            Dein Passwort: <strong>{{ password }}</strong>
+          </v-card-item>
+          <v-card-text class="ml-4">
+          <div class="ma-3">Alte Passwörter:</div>
+          <ul>
+            <li v-for="old in oldPassword">{{ old }}</li>
+          </ul>
+          </v-card-text>
+        </v-card>
+      </wrapper-panel>
+    <wrapper-panel title="Ratin Component">
+        Rating
+        <the-movie-review rating="1" movie-title="Ein scheiß Film"/>
+      </wrapper-panel>
+    <wrapper-panel title="The Weather API">
+        <the-weather-history />
+      </wrapper-panel>
+      <wrapper-panel title="Experiment 1">
+        <v-card>
+          <v-card-title>
+            <h3>Experiment 1</h3>
+          </v-card-title>
+          <v-card-text>
+            <div class="ma-2">Fetch auf Firebase dokumentation Tabelle "users"</div>
+            <v-btn @click="callNames">get Names</v-btn>
+          </v-card-text>
+        </v-card>
+      </wrapper-panel>
+    <wrapper-panel title="Product Forms">
+        <the-product-form />
+      </wrapper-panel>
     </v-expansion-panels>
-
   </v-container>
 </template>
 <script lang="ts" setup>
