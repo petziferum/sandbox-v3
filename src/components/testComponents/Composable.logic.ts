@@ -22,6 +22,11 @@ export function useMouse() {
     return { x, y }
 }
 
-export function addText(): string {
-    return text.value + ' added Hello World!';
+export function addText(): void {
+    resetText();
+    text.value = text.value + ' added Hello World!';
+}
+
+export function resetText(): void {
+    text.value = 'Sample Text';
 }

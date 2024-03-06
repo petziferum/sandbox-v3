@@ -3,6 +3,9 @@
     <h1>Welcome to the Lab</h1>
     <h4>Crazy Experiments are going on in here....</h4>
     <v-expansion-panels>
+      <wrapper-panel title="Composable test">
+        <the-composable-test />
+      </wrapper-panel>
       <wrapper-panel title="Abfahrsauskunft U2">
         <v-card>
           <v-card-title>
@@ -122,6 +125,8 @@ import TheGrid from "@/components/testComponents/theGrid.vue";
 import TheSortAndFilter from "@/components/testComponents/TheSortAndFilter.vue";
 import LocalGallery from "@/components/testComponents/localGallery.vue";
 import TheExcelUploadComponent from "@/components/TheExcelUploadComponent.vue";
+import WrapperPanel from "@/components/testComponents/WrapperPanel.vue";
+import TheComposableTest from "@/components/testComponents/TheComposableTest.vue";
 
 const password = ref("");
 const oldPassword = ref([]);
