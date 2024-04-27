@@ -1,12 +1,20 @@
 <script setup lang="ts">
 import {ref} from "vue";
+import type Product from "@/components/Product";
+defineProps<{
+  id: Product["id"];
+  description: Product["description"];
+  price: Product["price"];
+  name: Product["name"];
+  button: boolean;
 
+}>();
 const isOpen = ref(false);
 </script>
 
 <template>
 <v-dialog width="auto" v-model="isOpen">
-  <template v-slot:activator="{ props }">
+  <template v-if="button" v-slot:activator="{ props }">
     <v-btn
         color="primary"
         v-bind="props"

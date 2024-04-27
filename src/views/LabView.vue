@@ -3,6 +3,9 @@
     <h1>Welcome to the Lab</h1>
     <h4>Crazy Experiments are going on in here....</h4>
     <v-expansion-panels>
+      <wrapper-panel title="Props and Emits">
+        <the-props-test />
+      </wrapper-panel>
       <wrapper-panel title="Abfahrsauskunft U2">
         <v-card>
           <v-card-title>
@@ -59,10 +62,10 @@
     <wrapper-panel title="The Grid">
         <the-grid />
       </wrapper-panel>
-    <wrapper-panel title="Product View">
+    <wrapper-panel title="Product View and Props">
         <product-view />
       </wrapper-panel>
-    <wrapper-panel title="Bas Dialog">
+    <wrapper-panel title="Base Dialog">
         Dialog
         <base-dialog />
       </wrapper-panel>
@@ -87,7 +90,7 @@
       </wrapper-panel>
     <wrapper-panel title="Ratin Component">
         Rating
-        <the-movie-review rating="1" movie-title="Ein scheiß Film"/>
+        <the-movie-review :rating="1" movie-title="Ein scheiß Film"/>
       </wrapper-panel>
     <wrapper-panel title="The Weather API">
         <the-weather-history />
@@ -124,6 +127,7 @@ import LocalGallery from "@/components/testComponents/localGallery.vue";
 import TheExcelUploadComponent from "@/components/TheExcelUploadComponent.vue";
 import WrapperPanel from "@/components/testComponents/WrapperPanel.vue";
 import MvgApi from "@/components/testComponents/MvgApi";
+import ThePropsTest from "@/components/testComponents/ThePropsTest.vue";
 
 const password = ref<string>("");
 const oldPassword = ref<string[]>([]);
