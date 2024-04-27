@@ -129,7 +129,6 @@ import TheSortAndFilter from "@/components/testComponents/TheSortAndFilter.vue";
 import LocalGallery from "@/components/testComponents/localGallery.vue";
 import TheExcelUploadComponent from "@/components/TheExcelUploadComponent.vue";
 import WrapperPanel from "@/components/testComponents/WrapperPanel.vue";
-import MvgApi from "@/components/testComponents/MvgApi";
 import ThePropsTest from "@/components/testComponents/ThePropsTest.vue";
 import TheComposableTest from "@/components/testComponents/TheComposableTest.vue";
 
@@ -161,17 +160,7 @@ const generatePassword = function (): void {
   const nightmarePassword = nightmarePasswordArray.join("");
   password.value = nightmarePassword;
 }
-function getHelloFromGradleBackend() {
-  serverResponse.value = "";
-  const ip = "http://192.168.178.60:8080";
-  fetch(ip + '/hello')
-      .then(response => response.text())
-      .then(data => {
-        console.log(data);
-        serverResponse.value = data;
 
-      });
-}
 function passwordGenerator() {
   const words = ["Petzi", "Cuci", "Hironimo"];
   const length = 12;

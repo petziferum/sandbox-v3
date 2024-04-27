@@ -15,10 +15,14 @@
                   :key="i"
               >
                 <v-card>
-                  <v-card-title>{{ item.raw.title }}
+                  <v-card-title>Title {{i}}: {{ item.raw.name }}
                     <v-btn><v-icon>mdi-pencil</v-icon></v-btn>
                     <base-dialog v-bind="item.raw" :button="false"/>
                   </v-card-title>
+                  <v-card-text>
+                    {{ item.raw.description }}<br />
+                    Preis: {{ item.raw.price }}
+                  </v-card-text>
                 </v-card>
                 <br>
               </template>
@@ -31,17 +35,21 @@
 </v-row>
 </template>
 <script setup lang=ts>
-  import {ref} from "vue";
+import {onMounted, ref} from "vue";
   import BaseDialog from "@/components/BaseDialog.vue";
   import Product from "@/components/Product";
 
   const page = ref(1)
-  const items = ref([
+  const items = ref<Product[]>([])
+
+  onMounted(()=> {
+    items.value = [
       new Product("1", "Product 1", "Description 1", 100),
       new Product("2", "Product 2", "Description 2", 200),
       new Product("3", "Product 3", "Description 3", 300),
       new Product("4", "Product 4", "Description 4", 400),
-  ])
+    ]
+  })
 </script>
 <style scoped>
 
