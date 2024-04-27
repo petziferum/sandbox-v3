@@ -3,6 +3,9 @@
     <h1>Welcome to the Lab</h1>
     <h4>Crazy Experiments are going on in here....</h4>
     <v-expansion-panels>
+      <wrapper-panel title="Composable test">
+        <the-composable-test />
+      </wrapper-panel>
       <wrapper-panel title="Props and Emits">
         <the-props-test />
       </wrapper-panel>
@@ -113,7 +116,7 @@
   </v-container>
 </template>
 <script lang="ts" setup>
-import {computed, onBeforeMount, onMounted, reactive, ref} from "vue";
+import {onMounted, reactive, ref} from "vue";
 import {collection, getDocs} from "firebase/firestore";
 import {db} from "@/plugins/firebaseConfig.js";
 import TheWeatherHistory from "@/components/TheWeatherHistory.vue";
@@ -128,14 +131,11 @@ import TheExcelUploadComponent from "@/components/TheExcelUploadComponent.vue";
 import WrapperPanel from "@/components/testComponents/WrapperPanel.vue";
 import MvgApi from "@/components/testComponents/MvgApi";
 import ThePropsTest from "@/components/testComponents/ThePropsTest.vue";
+import TheComposableTest from "@/components/testComponents/TheComposableTest.vue";
 
-const password = ref<string>("");
-const oldPassword = ref<string[]>([]);
-const serverResponse = ref("");
+const password = ref("");
+const oldPassword = ref([]);
 
-function fetchTrain() {
-  MvgApi.fetchNextTrainCors("U2");
-}
 const callNames = async function () {
   const querySnapshot = await getDocs(collection(db, "users"));
   querySnapshot.forEach((doc) => {
@@ -161,19 +161,17 @@ const generatePassword = function (): void {
   const nightmarePassword = nightmarePasswordArray.join("");
   password.value = nightmarePassword;
 }
-
 function getHelloFromGradleBackend() {
   serverResponse.value = "";
   const ip = "http://192.168.178.60:8080";
   fetch(ip + '/hello')
-    .then(response => response.text())
-    .then(data => {
-      console.log(data);
-      serverResponse.value = data;
+      .then(response => response.text())
+      .then(data => {
+        console.log(data);
+        serverResponse.value = data;
 
-    });
+      });
 }
-
 function passwordGenerator() {
   const words = ["Petzi", "Cuci", "Hironimo"];
   const length = 12;
