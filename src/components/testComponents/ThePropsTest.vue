@@ -16,7 +16,9 @@
               >
                 <v-card>
                   <v-card-title>Title {{i}}: <v-spacer /> {{ item.raw.name }}
-                    <base-dialog v-bind="item.raw" />
+                    <base-dialog v-bind="item.raw">
+                      text im default slot
+                    </base-dialog>
                   </v-card-title>
                   <v-card-text>
                     {{ item.raw.description }}<br />

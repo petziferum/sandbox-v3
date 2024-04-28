@@ -9,17 +9,19 @@ export interface Props {
   price: Product["price"];
   name: Product["name"];
   dialogTitle: "Dialog Title";
+  button: boolean;
 }
 //Props werden im Interface definiert und mit WithDefault können sie mit Defaultwerten versehen werden
 withDefaults(defineProps<Props>(),{
-  dialogTitle: "Dialog Title"
+  dialogTitle: "Dialog Title",
+  button: true
 });
 const isOpen = ref(false);
 </script>
 
 <template>
 <v-dialog width="auto" v-model="isOpen">
-  <template v-slot:activator="{ props }">
+  <template v-if="button" v-slot:activator="{ props }">
     <v-btn
         color="primary"
         v-bind="props"
@@ -27,10 +29,15 @@ const isOpen = ref(false);
       Open Dialog
     </v-btn>
   </template>
+
 <v-card width="500">
   <v-card-title>
     <span class="headline">{{ dialogTitle }}</span>
   </v-card-title>
+  <v-card-text>
+    <template v-slot:default>
+    </template>
+  </v-card-text>
   <v-card-actions>
     <v-spacer />
     <v-btn color="blue darken-1" variant="outlined" @click="isOpen = false">Close</v-btn>
