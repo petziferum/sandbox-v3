@@ -15,9 +15,8 @@
                   :key="i"
               >
                 <v-card>
-                  <v-card-title>Title {{i}}: {{ item.raw.name }}
-                    <v-btn><v-icon>mdi-pencil</v-icon></v-btn>
-                    <base-dialog v-bind="item.raw" :button="false"/>
+                  <v-card-title>Title {{i}}: <v-spacer /> {{ item.raw.name }}
+                    <base-dialog v-bind="item.raw" />
                   </v-card-title>
                   <v-card-text>
                     {{ item.raw.description }}<br />

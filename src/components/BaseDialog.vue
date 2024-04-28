@@ -1,20 +1,25 @@
 <script setup lang="ts">
 import {ref} from "vue";
 import type Product from "@/components/Product";
-defineProps<{
+
+// durch dieses Schreibweise mit v-bind werden die Attribute aus der Klasse einzeln ausgelesen
+export interface Props {
   id: Product["id"];
   description: Product["description"];
   price: Product["price"];
   name: Product["name"];
-  button: boolean;
-
-}>();
+  dialogTitle: "Dialog Title";
+}
+//Props werden im Interface definiert und mit WithDefault können sie mit Defaultwerten versehen werden
+withDefaults(defineProps<Props>(),{
+  dialogTitle: "Dialog Title"
+});
 const isOpen = ref(false);
 </script>
 
 <template>
 <v-dialog width="auto" v-model="isOpen">
-  <template v-if="button" v-slot:activator="{ props }">
+  <template v-slot:activator="{ props }">
     <v-btn
         color="primary"
         v-bind="props"
@@ -24,7 +29,7 @@ const isOpen = ref(false);
   </template>
 <v-card width="500">
   <v-card-title>
-    <span class="headline">Use Google's location service?</span>
+    <span class="headline">{{ dialogTitle }}</span>
   </v-card-title>
   <v-card-actions>
     <v-spacer />
