@@ -7,6 +7,7 @@
   <v-col>
     <v-card title="Parent Component">
       <v-card-text>
+        <v-btn @click="editMode = !editMode" class="ma-2">Edit</v-btn>
         <v-table>
           <v-data-iterator :items="items" :page="page">
             <template v-slot:default="{ items }">
@@ -15,11 +16,19 @@
                   :key="i"
               >
                 <v-card>
-                  <v-card-title>Title {{i}}: <v-spacer /> {{ item.raw.name }}
-                    <base-dialog v-bind="item.raw">
-                      text im default slot
-                    </base-dialog>
+                  <v-card-title>
+                  <template v-if="editMode">
+                    <edit-text-field v-bind="item.raw" @update:productName="value => item.raw.name = value" />
+                  </template>
+                  <template v-else>
+                  {{i}}: {{ item.raw.name }}
+                  </template>
+                    <v-btn @click="openDialog(item.raw)" variant="flat" slim icon class="mx-4">
+                      <v-icon icon="mdi-pencil" />
+                    </v-btn>
                   </v-card-title>
+                  <v-card-subtitle>
+                  </v-card-subtitle>
                   <v-card-text>
                     {{ item.raw.description }}<br />
                     Preis: {{ item.raw.price }}
@@ -31,17 +40,25 @@
           </v-data-iterator>
         </v-table>
       </v-card-text>
+      <edit-product-dialog ref="editProductDialog" />
     </v-card>
   </v-col>
 </v-row>
 </template>
 <script setup lang=ts>
 import {onMounted, ref} from "vue";
-  import BaseDialog from "@/components/BaseDialog.vue";
   import Product from "@/components/Product";
+import EditProductDialog from "@/components/testComponents/propsandemits/editProductDialog.vue";
+import EditTextField from "@/components/testComponents/propsandemits/editTextField.vue";
 
   const page = ref(1)
   const items = ref<Product[]>([])
+  const editMode = ref(false)
+const editProductDialog = ref<typeof EditProductDialog | null>(null)
+
+function openDialog(product: Product) {
+  editProductDialog.value?.openDialog(product);
+}
 
   onMounted(()=> {
     items.value = [

@@ -1,24 +1,3 @@
-<script setup lang="ts">
-import {ref} from "vue";
-import type Product from "@/components/Product";
-
-// durch dieses Schreibweise mit v-bind werden die Attribute aus der Klasse einzeln ausgelesen
-export interface Props {
-  id: Product["id"];
-  description: Product["description"];
-  price: Product["price"];
-  name: Product["name"];
-  dialogTitle: "Dialog Title";
-  button: boolean;
-}
-//Props werden im Interface definiert und mit WithDefault können sie mit Defaultwerten versehen werden
-withDefaults(defineProps<Props>(),{
-  dialogTitle: "Dialog Title",
-  button: true
-});
-const isOpen = ref(false);
-</script>
-
 <template>
 <v-dialog width="auto" v-model="isOpen">
   <template v-if="button" v-slot:activator="{ props }">
@@ -35,8 +14,9 @@ const isOpen = ref(false);
     <span class="headline">{{ dialogTitle }}</span>
   </v-card-title>
   <v-card-text>
-    <template v-slot:default>
-    </template>
+    <slot>
+     Default Slot Text wenn nichts in der Parent eingegeben wird.
+    </slot>
   </v-card-text>
   <v-card-actions>
     <v-spacer />
@@ -45,6 +25,36 @@ const isOpen = ref(false);
 </v-card>
 </v-dialog>
 </template>
-<style scoped>
 
-</style>
+<script setup lang="ts">
+import {computed, ref} from "vue";
+import type Product from "@/components/Product";
+
+// durch dieses Schreibweise mit v-bind werden die Attribute aus der Klasse einzeln ausgelesen
+export interface Props {
+  id: Product["id"];
+  description: Product["description"];
+  price: Product["price"];
+  productName: Product["name"];
+  dialogTitle: "Dialog Title";
+  button: boolean;
+}
+//Props werden im Interface definiert und mit WithDefault können sie mit Defaultwerten versehen werden
+const props = withDefaults(defineProps<Props>(),{
+  dialogTitle: "Dialog Title",
+  productName: "Product Name",
+  button: true
+});
+const emit = defineEmits(["input", "update"]);
+const isOpen = ref(false);
+
+const nameEdit = computed({
+  get() {
+    return props.productName;
+  },
+  set(value) {
+    emit("input", value);
+  }
+
+})
+</script>
