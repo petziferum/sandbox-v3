@@ -42,11 +42,11 @@ const copy = ref<Product>(Product.createEmptyProduct());
 
 
 function openDialog(product: Product) {
-  copy.value = product;
+  copy.value = Object.assign({}, product);
   isOpen.value = true;
 }
 function save() {
-  emit("save", copy.value.name);
+  emit("save", copy.value);
   isOpen.value = false;
 }
 function cancel() {

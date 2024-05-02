@@ -21,9 +21,9 @@
                     <edit-text-field v-bind="item.raw" @update:productName="value => item.raw.name = value" />
                   </template>
                   <template v-else>
-                  {{i}}: {{ item.raw.name }}
+                  {{ item.raw.name }}
                   </template>
-                    <v-btn @click="openDialog(item.raw)" variant="flat" slim icon class="mx-4">
+                    <v-btn @click="openDialog(item.raw, i)" variant="flat" slim icon class="mx-4">
                       <v-icon icon="mdi-pencil" />
                     </v-btn>
                   </v-card-title>
@@ -40,9 +40,9 @@
           </v-data-iterator>
         </v-table>
       </v-card-text>
-      <edit-product-dialog ref="editProductDialog" />
+      <edit-product-dialog ref="editProductDialog" @save="save" />
     </v-card>
-  </v-col>
+  </v-col>post
 </v-row>
 </template>
 <script setup lang=ts>
@@ -53,10 +53,12 @@ import EditTextField from "@/components/testComponents/propsandemits/editTextFie
 
   const page = ref(1)
   const items = ref<Product[]>([])
+  const editIndex = ref(-1)
   const editMode = ref(false)
 const editProductDialog = ref<typeof EditProductDialog | null>(null)
 
-function openDialog(product: Product) {
+function openDialog(product: Product, index:number) {
+    editIndex.value= index;
   editProductDialog.value?.openDialog(product);
 }
 
@@ -68,6 +70,10 @@ function openDialog(product: Product) {
       new Product("4", "Product 4", "Description 4", 400),
     ]
   })
+
+function save(value: Product) {
+    items.value[editIndex.value] = value;
+}
 </script>
 <style scoped>
 
