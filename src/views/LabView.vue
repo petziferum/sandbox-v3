@@ -3,6 +3,9 @@
     <h1>Welcome to the Lab</h1>
     <h4>Crazy Experiments are going on in here....</h4>
     <v-expansion-panels>
+      <wrapper-panel title="Map & Set">
+        <map-und-set />
+      </wrapper-panel>
       <wrapper-panel title="Composable test">
         <the-composable-test />
       </wrapper-panel>
@@ -131,6 +134,7 @@ import TheExcelUploadComponent from "@/components/TheExcelUploadComponent.vue";
 import WrapperPanel from "@/components/testComponents/WrapperPanel.vue";
 import ThePropsTest from "@/components/testComponents/ThePropsTest.vue";
 import TheComposableTest from "@/components/testComponents/TheComposableTest.vue";
+import MapUndSet from "@/components/testComponents/MapUndSet.vue";
 
 const password = ref("");
 const oldPassword = ref([]);
