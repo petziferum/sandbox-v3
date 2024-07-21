@@ -1,6 +1,7 @@
-export enum Schulfach {
+enum Schulfach {
     MATHE = "Mathe",
     DEUTSCH = "Deutsch",
+    MOTORRADFAHREN = "Motorradfahren",
     ENGLISCH = "Englisch",
     GESCHICHTE = "Geschichte",
     BIOLOGIE = "Biologie",
@@ -23,3 +24,5 @@ export enum Schulfach {
     MECHATRONIK = "Mechatronik",
     TECHNIK = "Technik",
 }
+
+export default Schulfach;
