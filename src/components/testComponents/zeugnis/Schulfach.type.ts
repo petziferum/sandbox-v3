@@ -1,3 +1,5 @@
+import type Bildungsgang from "@/components/testComponents/zeugnis/Bildungsgang.type";
+
 enum Schulfach {
     MATHE = "Mathe",
     DEUTSCH = "Deutsch",
@@ -24,5 +26,8 @@ enum Schulfach {
     MECHATRONIK = "Mechatronik",
     TECHNIK = "Technik",
 }
+
+const AllowedSchulfachByBildungsgang: Record<Bildungsgang, Schulfach[]> = {};
+
 
 export default Schulfach;
