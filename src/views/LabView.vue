@@ -3,7 +3,7 @@
     <h1>Welcome to the Lab</h1>
     <h4>Crazy Experiments are going on in here....</h4>
     <v-expansion-panels>
-      <wrapper-panel title="Map & Set">
+      <wrapper-panel title="Map & Set Zeugnis">
         <map-und-set />
       </wrapper-panel>
       <wrapper-panel title="Composable test">

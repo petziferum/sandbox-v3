@@ -1,4 +1,5 @@
-import Schulfach from "@/components/testComponents/zeugnis/Schulfach.type";
+import Schulfach, {AllowedSchulfachByBildungsgang} from "@/components/testComponents/zeugnis/Schulfach.type";
+import type Bildungsgang from "@/components/testComponents/zeugnis/Bildungsgang.type";
 
 export default class ZeugnisEntry {
     fach: Schulfach;
@@ -19,13 +20,15 @@ export default class ZeugnisEntry {
         return this;
     }
 
-    static createZeugnisEntryList(existingGrades: ZeugnisEntry[]): ZeugnisEntry[] {
-        const entryValues: Schulfach[] = Object.values(Schulfach) as Schulfach[];
-        const existingGradesSet = new Set(existingGrades.map(entry => entry.fach));
-
+    static createZeugnisEntryList(existingGrades: ZeugnisEntry[], bildungsgang: Bildungsgang): ZeugnisEntry[] {
+        const allowedSchulfaecher = AllowedSchulfachByBildungsgang[bildungsgang];
+        const filteredExistingGrades = existingGrades.filter(entry => allowedSchulfaecher.includes(entry.fach));
+        const existingGradesSet = new Set(filteredExistingGrades.map(entry => entry.fach));
+        const newEntries = allowedSchulfaecher.filter(fach => !existingGradesSet.has(fach)).map(fach => new ZeugnisEntry(fach, 0));
+        console.log(...existingGrades,...newEntries);
         return [
-            ...existingGrades,
-            ...entryValues.filter(fach => !existingGradesSet.has(fach)).map(fach => new ZeugnisEntry(fach, 0))
+            ...filteredExistingGrades,
+            ...newEntries
         ]
     }
 }
