@@ -138,6 +138,7 @@ import WrapperPanel from "@/components/testComponents/WrapperPanel.vue";
 import ThePropsTest from "@/components/testComponents/ThePropsTest.vue";
 import TheComposableTest from "@/components/testComponents/TheComposableTest.vue";
 import MapUndSet from "@/components/testComponents/MapUndSet.vue";
+import CharacterTest from "@/components/testComponents/character/CharacterTest.vue";
 
 const password = ref("");
 const oldPassword = ref([]);
