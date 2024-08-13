@@ -2,13 +2,14 @@
 import Character from "@/components/testComponents/character/Character";
 import {ref, watch} from "vue";
 
-const activeChar = ref<Character | undefined>();
-// Todo: Wie kann nur ein Wert des activeChar beobachtet werden, wie activeChar.strength?
-const strengthWatcher = watch(activeChar, (value, oldValue) => {
-message.value = "Es hat sich was getan: " + value?.strength + ", war vorher: " + oldValue?.strength;
-}, {deep: true})
-const addedStrength = ref(0)
+const activeChar = ref<Character>(new Character());
+const strengthWatcher = watch(() => activeChar.value.strength, (newStrength, oldStrength) => {
+  message.value = "Es hat sich was getan: " + newStrength + ", war vorher: " + oldStrength;
+});
 const message = ref("");
+const addedMessage = ref("");
+const pointsMessage = ref("");
+const points = ref(50);
 
 function createNewCharacter() {
   const char = new Character();
@@ -20,10 +21,31 @@ function createNewCharacter() {
   activeChar.value = char;
 }
 function staerken() {
-  const randomNumber = Number.parseFloat((Math.random() * 100).toPrecision(4));
-  addedStrength.value = randomNumber;
-  activeChar.value?.addStrength(randomNumber);
-
+  const randomNumber = randomNumberAndPoints();
+    activeChar.value?.addStrength(randomNumber);
+  addedMessage.value = "Stärke wurde um " + randomNumber + " erhöht!";
+}
+function trainieren() {
+  const randomNumber = randomNumberAndPoints();
+  activeChar.value?.addEndurance(randomNumber);
+  addedMessage.value = "Ausdauer wurde um " + randomNumber + " erhöht!";
+}
+function charisma() {
+  const randomNumber = randomNumberAndPoints();
+  activeChar.value?.addCharisma(randomNumber);
+  addedMessage.value = "Charisma wurde um " + randomNumber + " erhöht!";
+}
+function randomNumberAndPoints() {
+  const randomNumber = Math.floor((Math.random() * 11) + 1);
+  const newPoints = points.value - randomNumber;
+  pointsMessage.value = "Punkte: " + randomNumber;
+  if(newPoints >= 0) {
+    points.value = newPoints;
+    return randomNumber;
+  } else {
+    message.value= "Nicht genug Punkte!";
+    return 0;
+  }
 }
 function resetChar() {
   activeChar.value? activeChar.value.strength = 0 : 0;
@@ -41,11 +63,16 @@ function resetChar() {
         </template>
         <template v-else>
           <v-btn v-if="activeChar" @click="resetChar">Reset Character</v-btn>
-          <v-btn @click="staerken">Stärken!</v-btn> addedStrength: {{ addedStrength }}
+          <v-btn @click="staerken">Stärken!</v-btn>
+          <v-btn @click="trainieren">Ausdauer!</v-btn>
+          <v-btn @click="charisma">Charisma!</v-btn>
+          <div>Punkte: {{ points }}</div>
         </template>
       </v-toolbar-items>
     </v-toolbar>
     <v-card-text>
+      {{ pointsMessage }}<br>
+      {{ addedMessage }}<br>
       {{ message }}
     </v-card-text>
     <v-card-text>

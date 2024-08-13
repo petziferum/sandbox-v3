@@ -43,7 +43,13 @@ export default class Character {
     }
 
     public addStrength(value: number): void {
-        this.strength += value;
+        this.strength = parseFloat((this.strength + value).toFixed());
+    }
+    public addEndurance(value: number): void {
+        this.endurance = parseFloat((this.endurance + value).toFixed());
+    }
+    public addCharisma(value: number): void {
+        this.charisma = parseFloat((this.charisma + value).toFixed());
     }
 
     private validateAttribute(value: number): number {
