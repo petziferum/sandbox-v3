@@ -25,12 +25,17 @@ enum Schulfach {
     ITALIENISCH = "Italienisch",
     MECHATRONIK = "Mechatronik",
     TECHNIK = "Technik",
+    TANZEN = "Tanzen",
 }
 
 export const AllowedSchulfachByBildungsgang: Record<Bildungsgang, Schulfach[]> = {
     [Bildungsgang.SOZIAL]: [Schulfach.DEUTSCH, Schulfach.ENGLISCH],
     [Bildungsgang.NATURWISSENSCHAFTLICH]: [Schulfach.MATHE, Schulfach.ENGLISCH],
-    [Bildungsgang.TECHNISCH]: [Schulfach.MATHE, Schulfach.MOTORRADFAHREN]
+    [Bildungsgang.TECHNISCH]: [Schulfach.MATHE,Schulfach.ENGLISCH, Schulfach.MOTORRADFAHREN, Schulfach.TANZEN],
+    [Bildungsgang.WIRTSCHAFT]: [Schulfach.MATHE, Schulfach.ENGLISCH],
+    [Bildungsgang.SPRACHLICH]: [Schulfach.DEUTSCH, Schulfach.ENGLISCH],
+    [Bildungsgang.KUNST]: [Schulfach.KUNST, Schulfach.MUSIK],
+    [Bildungsgang.SPORT]: [Schulfach.SPORT, Schulfach.MUSIK, Schulfach.TANZEN],
 };
 
 
