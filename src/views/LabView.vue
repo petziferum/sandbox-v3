@@ -3,6 +3,9 @@
     <h1>Welcome to the Lab</h1>
     <h4>Crazy Experiments are going on in here....</h4>
     <v-expansion-panels>
+      <wrapper-panel title="Intersection Observer with Tabs Animation">
+        <the-intersection-observer-view />
+      </wrapper-panel>
       <wrapper-panel title="Character Test">
         <character-test />
       </wrapper-panel>
@@ -139,6 +142,8 @@ import ThePropsTest from "@/components/testComponents/ThePropsTest.vue";
 import TheComposableTest from "@/components/testComponents/TheComposableTest.vue";
 import MapUndSet from "@/components/testComponents/MapUndSet.vue";
 import CharacterTest from "@/components/testComponents/character/CharacterTest.vue";
+import TheIntersectionObserverView
+  from "@/components/testComponents/intersectionobserver/TheIntersectionObserverView.vue";
 
 const password = ref("");
 const oldPassword = ref([]);
