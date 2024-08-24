@@ -1,6 +1,6 @@
 {
-  "extends": "@vue/tsconfig/tsconfig.web.json",
   "compilerOptions": {
+    "moduleResolution": "nodenext",
     "module": "esnext",
     "target": "ESNext",
     "noImplicitAny": false,

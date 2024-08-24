@@ -31,7 +31,7 @@
             </v-row>
             <v-row>
               <v-col cols="6">
-                <v-btn @click="fetchTrain">Hello</v-btn>
+                <v-btn @click="">Hello</v-btn>
               </v-col>
               <v-col cols="6">
                 U2: "Noch nicht implementiert"
@@ -62,9 +62,6 @@
         </v-card-text>
       </v-card>
     </wrapper-panel>
-    <wrapper-panel title="Excel upload">
-        <the-excel-upload-component />
-      </wrapper-panel>
     <wrapper-panel title="local Gallery">
         <local-gallery />
       </wrapper-panel>
@@ -125,7 +122,7 @@
   </v-container>
 </template>
 <script lang="ts" setup>
-import {onMounted, reactive, ref} from "vue";
+import {ref} from "vue";
 import {collection, getDocs} from "firebase/firestore";
 import {db} from "@/plugins/firebaseConfig.js";
 import TheWeatherHistory from "@/components/TheWeatherHistory.vue";
@@ -136,7 +133,6 @@ import ProductView from "@/components/products/ProductView.vue";
 import TheGrid from "@/components/testComponents/theGrid.vue";
 import TheSortAndFilter from "@/components/testComponents/TheSortAndFilter.vue";
 import LocalGallery from "@/components/testComponents/localGallery.vue";
-import TheExcelUploadComponent from "@/components/TheExcelUploadComponent.vue";
 import WrapperPanel from "@/components/testComponents/WrapperPanel.vue";
 import ThePropsTest from "@/components/testComponents/ThePropsTest.vue";
 import TheComposableTest from "@/components/testComponents/TheComposableTest.vue";
