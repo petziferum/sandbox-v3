@@ -1,14 +1,13 @@
 <template>
+  <div>
+    <v-tabs grow v-model="tab_selected" slider-color="red" class="custom-slider">
+      <v-tab v-for="(category, index) in categories" :key="index" class="nav_tab">
+        {{ category }}
+      </v-tab>
+    </v-tabs>
   <v-card title="Intersection Observer with Tabs Animation">
-    <v-card-subtitle>
-      <v-tabs grow v-model="tab_selected" slider-color="red">
-        <v-tab v-for="(category, index) in categories" :key="index" class="nav_tab">
-          {{ category }}
-        </v-tab>
-        <template v-slot:slider>
-          <div class="custom-tab-slider"></div>
-        </template>
-      </v-tabs>
+    <v-card-subtitle style="height: 100px">
+
     </v-card-subtitle>
     <v-card-text style="height: 250px; overflow-y: scroll">
       <div v-for="(category, index) in categories" :key="index">
@@ -18,6 +17,7 @@
       </div>
     </v-card-text>
   </v-card>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -43,8 +43,17 @@ const handleIntersect = (isIntersecting: boolean, entries: IntersectionObserverE
 .contentcard{
   margin-bottom: 500px;
 }
-.v-tabs-slider {
-  height: 10px;
-  background-color: white;
+.custom-slider .v-slide-group__wrapper .v-tabs-slider {
+  height: 40px !important;
+  color: red !important;
+  background-color: red !important;
+  transition: 3s !important;
+}
+.custom-slider .v-tabs-slider::before {
+  height: 40px !important; /* Apply to pseudo-element if needed */
+}
+
+.custom-slider .v-slide-group__wrapper .v-tabs-slider {
+  overflow: visible !important; /* Ensure the slider is not being clipped */
 }
 </style>
