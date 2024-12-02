@@ -3,6 +3,9 @@
     <h1>Welcome to the Lab</h1>
     <h4>Crazy Experiments are going on in here....</h4>
     <v-expansion-panels>
+      <wrapper-panel title="huggingface transformers">
+        <Transformers />
+      </wrapper-panel>
       <wrapper-panel title="The Backend Test">
         <the-backend-test-view />
       </wrapper-panel>
@@ -145,6 +148,7 @@ import CharacterTest from "@/components/testComponents/character/CharacterTest.v
 import TheIntersectionObserverView
   from "@/components/testComponents/intersectionobserver/TheIntersectionObserverView.vue";
 import TheBackendTestView from "@/components/testComponents/backendtest/TheBackendTestView.vue";
+import Transformers from "@/components/huggingface/transformers.vue";
 
 const password = ref("");
 const oldPassword = ref([]);

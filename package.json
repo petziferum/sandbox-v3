@@ -11,6 +11,7 @@
     "type-check": "vue-tsc --noEmit"
   },
   "dependencies": {
+    "@huggingface/transformers": "^3.1.0",
     "@mdi/font": "5.9.55",
     "@vueuse/core": "^10.9.0",
     "firebase": "^11.0.1",
